@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    tools 
+	{
+        
+        maven "M2_HOME"
+    }
+
+    stages {
+        		
+		stage('SonarQube analysis') 
+		  {
+             steps
+			   {
+                   withSonarQubeEnv('sonarqube') 
+				   { 
+                      sh "mvn sonar:sonar"
+                   }
+               }
+          }
+        
+     
+     }
+}
